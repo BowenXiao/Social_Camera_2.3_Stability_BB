@@ -119,7 +119,7 @@ FRONTBACKBUTTON_DESCR   = 'com.intel.camera22:id/shortcut_mode_2'
 CPTUREPOINT             = 'adb shell input swipe 2200 1095 2200 895 '
 DRAWUP_CAPTUREBUTTON    = 'adb shell input swipe 2200 1095 2200 895 '
 CAMERA_ID               = 'adb shell cat /data/data/com.intel.camera22/shared_prefs/com.intel.camera22_preferences_0.xml | grep pref_camera_id_key'
-PATHSD= '/storage/sdcard1/DCIM/100ANDRO/*'
+PATHSD='/storage/sdcard1/DCIM/100ANDRO/*'
 ##################################################################################################################
 
 class Adb():
@@ -517,7 +517,7 @@ class TouchButton():
 
     def captureAndCheckPicCount(self,capturemode,delaytime=0):
         d = { 'single':'jpg', 'video':'mp4', 'smile':'jpg', 'longclick':'jpg'} 
-        beforeNo = commands.getoutput('adb shell ls ' + PATHSD + ' | grep '+ d[capturemode] +' | wc -l') #Get count before capturing
+        beforeNo = commands.getoutput('adb shell ls '+ PATHSD +' | grep '+ d[capturemode] +' | wc -l') #Get count before capturing
         if capturemode == 'video':
             self.takeVideo(delaytime)
         else:
