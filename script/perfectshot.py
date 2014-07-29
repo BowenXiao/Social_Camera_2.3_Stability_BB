@@ -77,9 +77,9 @@ class CameraTest(unittest.TestCase):
         """          
         #Step 2
         exposure = random.choice(EXPOSURE_OPTION)
-        sm.setCameraSetting('perfectshot',3,EXPOSURE_OPTION.index(exposure)+1)
-        assert bool(a.cmd('cat',PATH + EXPOSURE_KEY).find(exposure)+1)
-        self._checkCapturedPic()
+        sm.setCameraSetting('perfectshot',exposure)
+        tb.captureAndCheckPicCount('single',2)
+        
 # Test case 3
     def testCapturePictureWithScenes(self):
         """
@@ -91,14 +91,8 @@ class CameraTest(unittest.TestCase):
         """
         # Step 2
         scence = random.choice(SCENCE_OPTION)
-        sm.setCameraSetting('perfectshot',2,SCENCE_OPTION.index(scence)+1)
-        assert bool(a.cmd('cat',PATH + SCENE_KEY).find(scence)+1)
-        #Step 3
-        self._checkCapturedPic()
-        time.sleep(1)
-        sm.setCameraSetting('perfectshot',2,7)
-
-
+        sm.setCameraSetting('perfectshot',scence)
+        tb.captureAndCheckPicCount('single',2)
 
 ########################################################3
 
