@@ -77,7 +77,7 @@ class CameraTest(unittest.TestCase):
         """          
         #Step 2
         exposure = random.choice(EXPOSURE_OPTION)
-        sm.setCameraOption('Exposure',exposure)
+        so.setCameraOption('Exposure',exposure)
         tb.captureAndCheckPicCount('single',2)
         
 # Test case 3
@@ -91,7 +91,7 @@ class CameraTest(unittest.TestCase):
         """
         # Step 2
         scence = random.choice(SCENCE_OPTION)
-        sm.setCameraOption('Scenes',scence)
+        so.setCameraOption('Scenes',scence)
         tb.captureAndCheckPicCount('single',2)
 
 ########################################################3
