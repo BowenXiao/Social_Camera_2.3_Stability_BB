@@ -47,7 +47,7 @@ class CameraTest(unittest.TestCase):
     def tearDown(self):
         super(CameraTest,self).tearDown()
         #4.Exit  activity
-        TB.switchBackOrFrontCamera('back')
+        tb.switchBackOrFrontCamera('back')
         self._pressBack(4)
 
     # Testcase 2
@@ -221,7 +221,7 @@ class CameraTest(unittest.TestCase):
 
     def _capturePictureAndConfirm(self,timer=0):
         beforeC = a.cmd('ls','/sdcard/DCIM/100ANDRO')
-        TB.takePicture('single')
+        tb.takePicture('single')
         time.sleep(timer)
         afterC  = a.cmd('ls','/sdcard/DCIM/100ANDRO')
         if afterC == beforeC:
