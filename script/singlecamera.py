@@ -33,11 +33,11 @@ class CameraTest(unittest.TestCase):
     def setUp(self):
         super(CameraTest,self).setUp()
         # rm DCIM folder and refresh from adb shell
-        A.cmd('rm','/sdcard/DCIM/100ANDRO')
-        A.cmd('refresh','/sdcard/DCIM/100ANDRO')
+        a.cmd('rm','/sdcard/DCIM/100ANDRO')
+        a.cmd('refresh','/sdcard/DCIM/100ANDRO')
         #Because default camera after launching is single mode, so we set this step in setUp().
         #Step 1. Launch single capture activity
-        A.cmd('launch','com.intel.camera22/.Camera')
+        a.cmd('launch','com.intel.camera22/.Camera')
         time.sleep(2)
         if  d(text = 'OK').wait.exists(timeout = 3000):
             d(text = 'OK').click.wait()
@@ -211,18 +211,18 @@ class CameraTest(unittest.TestCase):
 
     def _confirmSettingMode(self,sub_mode,option):
         if sub_mode == 'location':
-            result = A.cmd('cat','/data/data/com.intel.camera22/shared_prefs/com.intel.camera22_preferences_0.xml | grep '+ sub_mode)
+            result = a.cmd('cat','/data/data/com.intel.camera22/shared_prefs/com.intel.camera22_preferences_0.xml | grep '+ sub_mode)
             if result.find(option) == -1:
                 self.fail('set camera setting ' + sub_mode + ' to ' + option + ' failed')
         else:
-            result = A.cmd('cat','/data/data/com.intel.camera22/shared_prefs/com.intel.camera22_preferences_0_0.xml | grep ' + sub_mode)
+            result = a.cmd('cat','/data/data/com.intel.camera22/shared_prefs/com.intel.camera22_preferences_0_0.xml | grep ' + sub_mode)
             if result.find(option) == -1:
                 self.fail('set camera setting ' + sub_mode + ' to ' + option + ' failed')
 
     def _capturePictureAndConfirm(self,timer=0):
-        beforeC = A.cmd('ls','/sdcard/DCIM/100ANDRO')
+        beforeC = a.cmd('ls','/sdcard/DCIM/100ANDRO')
         TB.takePicture('single')
         time.sleep(timer)
-        afterC  = A.cmd('ls','/sdcard/DCIM/100ANDRO')
+        afterC  = a.cmd('ls','/sdcard/DCIM/100ANDRO')
         if afterC == beforeC:
             self.fail('take picture failed !!')
